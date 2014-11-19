@@ -232,7 +232,7 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob) {
         })
         .replace(/V/g, "(V|バレンタイン)")
         .replace(/S/g, "(S|サマー)")
-        .replace(/S/g, "(N|ナイトメア)")
+        .replace(/N/g, "(N|ナイトメア)")
         .replace(/[ァ-ン]/g, function (a) {
             return String.fromCharCode(a.charCodeAt(0) - 0x60)
         })
