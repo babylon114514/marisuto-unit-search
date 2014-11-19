@@ -242,7 +242,7 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob) {
         f = 0;
         if (tf) {
             for (j = tg.length; j--;) {
-                if (tg[j] && c[9].indexOf(typelist[j]) != -1) {
+                if (tg[j] && c[9].split("/").indexOf(typelist[j]) != -1) {
                     f++;
                 }
             }
