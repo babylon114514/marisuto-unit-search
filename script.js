@@ -136,7 +136,7 @@ for (i in db) {
     c(db[i].type.sort(function (a, b) {
         return a.localeCompare(b)
     }).join("/"), 0, 0, 1);
-    c(db[i].attacktype[0], 0, db[i].attacktype[0] == "精神" ? "#9932cc" : "#333");
+    c(db[i].attacktype[0], 0, {"物理": "#333333", "精神": "#9932cc", "???": "#cc3232"}[db[i].attacktype[0]]);
     c(db[i].attacktype[1] ? db[i].attacktype[1] : "単体", tn[db[i].attacktype[1]], tc[db[i].attacktype[1]]);
     c(es[db[i].element], db[i].element, ec[db[i].element]);
     c(db[i].skill[0], 0, 0, 1);
@@ -188,7 +188,7 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob) {
     st = gi("i_search_text");
     cf = a("sb_choice");
     sf = [a("sb_s_s"), a("sb_s_m"), a("sb_s_l")];
-    r1f = [a("sb_r1_a"), a("sb_r1_b")];
+    r1f = [a("sb_r1_a"), a("sb_r1_b"), a("sb_r1_c")];
     r2f = [a("sb_r2_a"), a("sb_r2_b"), a("sb_r2_c")];
     ef = [a("sb_e_0"), a("sb_e_1"), a("sb_e_2"), a("sb_e_3"), a("sb_e_4")];
     ob = getoptboxobj();
@@ -264,6 +264,8 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob) {
             } else if (!r1f[0] && c[10] === "精神") {
                 f = 1
             } else if (!r1f[1] && c[10] === "物理") {
+                f = 1
+            } else if (!r1f[2] && c[10] === "???") {
                 f = 1
             } else if (!r2f[0] && c[11] === "単体") {
                 f = 1
