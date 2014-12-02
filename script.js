@@ -26,6 +26,14 @@ g_sibfocus = false;
 gi = function (a) {
     return document.getElementById(a)
 };
+it = function (a, b) {
+    if (b === void(0)) {
+        return a.textContent !== void(0) ? a.textContent : a.innerText;
+    } else {
+        if (a.textContent !== void(0)) a.textContent = b;
+        else a.innerText = b;
+    }
+};
 c = gi("sb_typegroup");
 lvd_ver = "1.0";
 lvdf = window["lvd_ver"] ? window["lvd_ver"] : 0;
@@ -60,7 +68,7 @@ for (i = typelist.length; i--;) {
 }
 c = function (h, t, c, m, b) {
     b = document.createElement("td");
-    b.innerHTML = h;
+    it(b, h);
     t && (b.title = t);
     c && (b.style.backgroundColor = c) && (b.style.color = "#fff");
     m && (b.style.fontSize = "12px");
@@ -68,26 +76,26 @@ c = function (h, t, c, m, b) {
 };
 popup_fn = function (a, b) {
     a = this.getElementsByTagName("td")[0];
-    a = a.innerHTML;
-    if (gi("unitdatailbox").style.display == "block" && a == gi("udb_name").innerHTML) {
+    a = it(a);
+    if (gi("unitdatailbox").style.display == "block" && a == it(gi("udb_name"))) {
         gi("unitdatailbox").style.display = "none";
         return
     }
     gi("unitdatailbox").style.display = "block";
-    gi("udb_name").innerHTML = a;
-    gi("udb_size").innerHTML = st[db[a].size];
-    gi("udb_hp").innerHTML = db[a].hp;
-    gi("udb_atk").innerHTML = db[a].atk;
-    gi("udb_def").innerHTML = db[a].def;
-    gi("udb_mnt").innerHTML = db[a].mnt;
-    gi("udb_cost").innerHTML = db[a].cost;
-    gi("udb_elem").innerHTML = es[db[a].element];
-    gi("udb_type").innerHTML = db[a].type.join(",");
-    gi("udb_atktype").innerHTML = db[a].attacktype[0] + "・" + (db[a].attacktype[1] ? db[a].attacktype[1] : "単体");
-    gi("udb_skillname").innerHTML = db[a].skill[0];
-    gi("udb_skilldetail").innerHTML = db[a].skill[1];
-    gi("udb_word").innerHTML = db[a].words.join("/");
-    gi("udb_gousei").innerHTML = db[a].gousei;
+    it(gi("udb_name"), a);
+    it(gi("udb_size"), st[db[a].size]);
+    it(gi("udb_hp"), db[a].hp);
+    it(gi("udb_atk"), db[a].atk);
+    it(gi("udb_def"), db[a].def);
+    it(gi("udb_mnt"), db[a].mnt);
+    it(gi("udb_cost"), db[a].cost);
+    it(gi("udb_elem"), es[db[a].element]);
+    it(gi("udb_type"), db[a].type.join(","));
+    it(gi("udb_atktype"), db[a].attacktype[0] + "・" + (db[a].attacktype[1] ? db[a].attacktype[1] : "単体"));
+    it(gi("udb_skillname"), db[a].skill[0]);
+    it(gi("udb_skilldetail"), db[a].skill[1]);
+    it(gi("udb_word"), db[a].words.join("/"));
+    it(gi("udb_gousei"), db[a].gousei);
 
     //gi("udb_wikilinka").href="http://search.yahoo.co.jp/search?p=site%3Aseesaawiki.jp%2Fmarisuto%2F+-site:m.seesaawiki.jp+intitle%3A\""+encodeURI(a)+"\"";
     //gi("udb_wikilinkb").href="http://search.yahoo.co.jp/search?p=site%3Amarisuto.wiki.fc2.com%2F+intitle%3A\""+encodeURI(a)+"\"";
@@ -147,7 +155,7 @@ for (i in db) {
 }
 $("#ut").tablesorter({
     textExtraction: function (a) {
-        return a.title ? a.title : a.innerHTML
+        return a.title ? a.title : it(a);
     }
 });
 $("#ut").bind("sortEnd", function () {
@@ -164,14 +172,14 @@ gen_tsdata = function (t, u) {
     for (i = g_tsdata4.length; i--;) {
         g_tsdata[i] = [];
         g_tsdata2[i] = g_tsdata4[i].getElementsByTagName("td"); //console.log(g_tsdata2[i]);
-        t = db[g_tsdata2[i][0].innerHTML]; //console.log(t);
-        g_tsdata3[i] = (g_tsdata2[i][0].innerHTML + t.hiragana + t.hiragana2 + t.words.join(",") + t.skill.join(",") + t.gousei)
+        t = db[it(g_tsdata2[i][0])]; //console.log(t);
+        g_tsdata3[i] = (it(g_tsdata2[i][0]) + t.hiragana + t.hiragana2 + t.words.join(",") + t.skill.join(",") + t.gousei)
             .replace(/[ァ-ン]/g, function (a) {
                 return String.fromCharCode(a.charCodeAt(0) - 0x60)
             })
             .replace(/[ 　]+/g, "").toLowerCase();
         for (j = g_tsdata2[i].length; j--;) {
-            g_tsdata[i][j] = g_tsdata2[i][j].innerHTML;
+            g_tsdata[i][j] = it(g_tsdata2[i][j]);
         }
     }
 };
@@ -346,7 +354,7 @@ boxopenf = 0;
 gi("sb_cb").onclick = gi("sb_cb2").onclick = function () {
     boxopenf = !boxopenf;
     gi("sb_mb").style.display = boxopenf ? "block" : "none";
-    gi("sb_cb").getElementsByTagName("span")[0].innerHTML = boxopenf ? "↑" : "↓";
+    it(gi("sb_cb").getElementsByTagName("span")[0], boxopenf ? "↑" : "↓");
 };
 document.body.onkeydown = function (e) {
     e = e ? e : event;
