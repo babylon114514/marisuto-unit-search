@@ -140,7 +140,7 @@ for (i in db) {
     c(db[i].attacktype[1] ? db[i].attacktype[1] : "単体", tn[db[i].attacktype[1]], tc[db[i].attacktype[1]]);
     c(es[db[i].element], db[i].element, ec[db[i].element]);
     c(db[i].skill[0], 0, 0, 1);
-    c(db[i].exp);
+    c(db[i].exp === null ? "---" : db[i].exp);
     c(db[i].hiragana2, 0, 0, 1);
     //c(db[i].);
     me.appendChild(a);
