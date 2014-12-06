@@ -93,7 +93,7 @@ popup_fn = function (a, b) {
     it(gi("udb_type"), db[a].type.join(","));
     it(gi("udb_atktype"), db[a].attacktype[0] + "・" + (db[a].attacktype[1] ? db[a].attacktype[1] : "単体"));
     it(gi("udb_skillname"), db[a].skill[0]);
-    it(gi("udb_skilldetail"), db[a].skill[1]);
+    gi("udb_skilldetail").innerHTML = db[a].skill[1].replace(/\n/g, "<br>");
     it(gi("udb_word"), db[a].words.join("/"));
     it(gi("udb_gousei"), db[a].gousei);
 
