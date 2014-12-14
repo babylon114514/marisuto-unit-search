@@ -300,9 +300,9 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob) {
         }
         if (!f) {
             for (j = ob.length; j--;) {
-                if (ob[j][2] && (c[ob[j][0]] * 1) > ob[j][1]) {
+                if (ob[j][2] >= 1 && (c[ob[j][0]] * 1) > ob[j][1]) {
                     f++
-                } else if (!ob[j][2] && (c[ob[j][0]] * 1) < ob[j][1]) {
+                } else if (ob[j][2] <= 1 && (c[ob[j][0]] * 1) < ob[j][1]) {
                     f++
                 } else {}
             }
