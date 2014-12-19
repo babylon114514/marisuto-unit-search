@@ -153,6 +153,7 @@ for (i in db) {
     //c(db[i].);
     me.appendChild(a);
 }
+it(gi("unit_count"), me.childNodes.length);
 $("#ut").tablesorter({
     textExtraction: function (a) {
         return a.title ? a.title : it(a);
@@ -184,7 +185,7 @@ gen_tsdata = function (t, u) {
     }
 };
 gen_tsdata();
-search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob) {
+search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob, n_units) {
     if (need_updtd) {
         gen_tsdata()
     }
@@ -245,6 +246,7 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob) {
             return String.fromCharCode(a.charCodeAt(0) - 0x60)
         })
         .replace(/[ 　]+/g, "").toLowerCase(), "i");
+    n_units = 0;
     for (i = g_tsdata.length; i--;) {
         c = g_tsdata[i];
         f = 0;
@@ -314,7 +316,9 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob) {
             f = false
         }
         g_tsdata4[i].style.display = f ? "none" : "";
+        if (!f) n_units++;
     }
+    it(gi("unit_count"), n_units);
 };
 addoptbox = function (a, b) {
     a = document.getElementsByClassName("sb_optbox");
