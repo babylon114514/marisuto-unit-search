@@ -105,10 +105,10 @@ popup_fn = function (a, b) {
 };
 me = gi("ut_body");
 z = "";
-es = ["闇", "光", "赤", "緑", "青"];
+es = ["闇", "光", "赤", "緑", "青", "無"];
 st = ["S", "M", "G"];
 sc = ["#999", "#555", "#000"];
-ec = ["#4b0082", "#ffd700", "#f00", "#228b22", "#00f"];
+ec = ["#4b0082", "#ffd700", "#f00", "#228b22", "#00f", "#777"];
 tn = {
     undefined: 3,
     "二回": 2,
@@ -199,7 +199,7 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob, n
     sf = [a("sb_s_s"), a("sb_s_m"), a("sb_s_l")];
     r1f = [a("sb_r1_a"), a("sb_r1_b"), a("sb_r1_c")];
     r2f = [a("sb_r2_a"), a("sb_r2_b"), a("sb_r2_c")];
-    ef = [a("sb_e_0"), a("sb_e_1"), a("sb_e_2"), a("sb_e_3"), a("sb_e_4")];
+    ef = [a("sb_e_0"), a("sb_e_1"), a("sb_e_2"), a("sb_e_3"), a("sb_e_4"), a("sb_e_5")];
     ob = getoptboxobj();
     tt = gi("sb_typegroup").getElementsByTagName("input");
     tg = [];
@@ -292,6 +292,8 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob, n
             } else if (!ef[3] && c[12] === "緑") {
                 f = 1
             } else if (!ef[4] && c[12] === "青") {
+                f = 1
+            } else if (!ef[5] && c[12] === "無") {
                 f = 1
             }
         }
