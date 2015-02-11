@@ -41,7 +41,7 @@ lvdf2 = (lvdf == "enq") ? 1 : 0;
 if (lvdf) {
     typelist = [];
     t_tl = {};
-    for (i in db) {
+    for (i = db.length; i--;) {
         for (j = db[i].type.length; j--;) {
             t_tl[db[i].type[j]] = t_tl[db[i].type[j]] ? t_tl[db[i].type[j]] + 1 : 1
         }
@@ -75,14 +75,15 @@ c = function (h, t, c, m, b) {
     a.appendChild(b);
 };
 popup_fn = function (a, b) {
-    a = this.getElementsByTagName("td")[0];
-    a = it(a);
-    if (gi("unitdatailbox").style.display == "block" && a == it(gi("udb_name"))) {
+    a = this.getElementsByTagName("td")[16];
+    a = parseInt(it(a), 10);
+    if (gi("unitdatailbox").style.display == "block" && a == parseInt(it(gi("udb_id")), 10)) {
         gi("unitdatailbox").style.display = "none";
         return
     }
     gi("unitdatailbox").style.display = "block";
-    it(gi("udb_name"), a);
+    it(gi("udb_id"), a.toString());
+    it(gi("udb_name"), db[a].name);
     it(gi("udb_size"), st[db[a].size]);
     it(gi("udb_hp"), db[a].hp);
     it(gi("udb_atk"), db[a].atk);
@@ -100,8 +101,8 @@ popup_fn = function (a, b) {
     //gi("udb_wikilinka").href="http://search.yahoo.co.jp/search?p=site%3Aseesaawiki.jp%2Fmarisuto%2F+-site:m.seesaawiki.jp+intitle%3A\""+encodeURI(a)+"\"";
     //gi("udb_wikilinkb").href="http://search.yahoo.co.jp/search?p=site%3Amarisuto.wiki.fc2.com%2F+intitle%3A\""+encodeURI(a)+"\"";
     //gi("udb_wikilinka").href="http://search.yahoo.co.jp/search?p=site%3Aseesaawiki.jp%2Fmarisuto%2F+-site:m.seesaawiki.jp+intitle%3A\""+encodeURI(a)+"\"";
-    gi("udb_wikilinka").href = "http://seesaawiki.jp/marisuto/d/" + EscapeEUCJP(a) + "";
-    gi("udb_wikilinkb").href = "http://marisuto.wiki.fc2.com/wiki/" + EscapeUTF8(a) + "";
+    gi("udb_wikilinka").href = "http://seesaawiki.jp/marisuto/d/" + EscapeEUCJP(db[a].name) + "";
+    gi("udb_wikilinkb").href = "http://marisuto.wiki.fc2.com/wiki/" + EscapeUTF8(db[a].name) + "";
 };
 me = gi("ut_body");
 z = "";
@@ -124,7 +125,7 @@ ta = {
     "二回": 2,
     全体: 5
 };
-for (i in db) {
+for (i = 0; i < db.length; i++) {
     z += i + ":\"" + db[i].hiragana + "\",";
     a = document.createElement("tr");
     a.onclick = popup_fn;
@@ -132,7 +133,7 @@ for (i in db) {
         this.className = (this.className + "").match(/choice/) ? "" : "choice";
         return false
     };
-    c(i);
+    c(db[i].name);
     c(db[i].hiragana, 0, 0, 1);
     c(st[db[i].size], 0, sc[db[i].size]);
     c(db[i].hp);
@@ -150,6 +151,8 @@ for (i in db) {
     c(db[i].skill[0], 0, 0, 1);
     c(db[i].exp === null ? "---" : db[i].exp);
     c(db[i].hiragana2, 0, 0, 1);
+    c(i);
+    a.lastChild.className = "ut_id";
     //c(db[i].);
     me.appendChild(a);
 }
@@ -173,8 +176,8 @@ gen_tsdata = function (t, u) {
     for (i = g_tsdata4.length; i--;) {
         g_tsdata[i] = [];
         g_tsdata2[i] = g_tsdata4[i].getElementsByTagName("td"); //console.log(g_tsdata2[i]);
-        t = db[it(g_tsdata2[i][0])]; //console.log(t);
-        g_tsdata3[i] = (it(g_tsdata2[i][0]) + t.hiragana + t.hiragana2 + t.words.join(",") + t.skill.join(",") + t.gousei)
+        t = db[parseInt(it(g_tsdata2[i][16]), 10)]; //console.log(t);
+        g_tsdata3[i] = (t.name + t.hiragana + t.hiragana2 + t.words.join(",") + t.skill.join(",") + t.gousei)
             .replace(/[ァ-ン]/g, function (a) {
                 return String.fromCharCode(a.charCodeAt(0) - 0x60)
             })
