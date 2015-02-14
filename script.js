@@ -106,10 +106,10 @@ popup_fn = function (a, b) {
 };
 me = gi("ut_body");
 z = "";
-es = ["闇", "光", "赤", "緑", "青", "無"];
+es = ["赤", "青", "緑", "光", "闇", "無"];
 st = ["S", "M", "G"];
 sc = ["#999", "#555", "#000"];
-ec = ["#4b0082", "#ffd700", "#f00", "#228b22", "#00f", "#777"];
+ec = ["#f00", "#00f", "#228b22", "#ffd700", "#4b0082", "#777"];
 tn = {
     undefined: 3,
     "二回": 2,
@@ -147,7 +147,7 @@ for (i = 0; i < db.length; i++) {
     }).join("/"), 0, 0, 1);
     c(db[i].attacktype[0], 0, {"物理": "#333333", "精神": "#9932cc", "???": "#cc3232"}[db[i].attacktype[0]]);
     c(db[i].attacktype[1] ? db[i].attacktype[1] : "単体", tn[db[i].attacktype[1]], tc[db[i].attacktype[1]]);
-    c(es[db[i].element], db[i].element, ec[db[i].element]);
+    c(es[db[i].element], db[i].element.toString(), ec[db[i].element]);
     c(db[i].skill[0], 0, 0, 1);
     c(db[i].exp === null ? "---" : db[i].exp);
     c(db[i].hiragana2, 0, 0, 1);
@@ -286,15 +286,15 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob, n
                 f = 1
             } else if (!r2f[2] && c[11] === "全体") {
                 f = 1
-            } else if (!ef[0] && c[12] === "闇") {
+            } else if (!ef[0] && c[12] === "赤") {
                 f = 1
-            } else if (!ef[1] && c[12] === "光") {
+            } else if (!ef[1] && c[12] === "青") {
                 f = 1
-            } else if (!ef[2] && c[12] === "赤") {
+            } else if (!ef[2] && c[12] === "緑") {
                 f = 1
-            } else if (!ef[3] && c[12] === "緑") {
+            } else if (!ef[3] && c[12] === "光") {
                 f = 1
-            } else if (!ef[4] && c[12] === "青") {
+            } else if (!ef[4] && c[12] === "闇") {
                 f = 1
             } else if (!ef[5] && c[12] === "無") {
                 f = 1
