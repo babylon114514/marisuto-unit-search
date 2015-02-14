@@ -101,8 +101,8 @@ popup_fn = function (a, b) {
     //gi("udb_wikilinka").href="http://search.yahoo.co.jp/search?p=site%3Aseesaawiki.jp%2Fmarisuto%2F+-site:m.seesaawiki.jp+intitle%3A\""+encodeURI(a)+"\"";
     //gi("udb_wikilinkb").href="http://search.yahoo.co.jp/search?p=site%3Amarisuto.wiki.fc2.com%2F+intitle%3A\""+encodeURI(a)+"\"";
     //gi("udb_wikilinka").href="http://search.yahoo.co.jp/search?p=site%3Aseesaawiki.jp%2Fmarisuto%2F+-site:m.seesaawiki.jp+intitle%3A\""+encodeURI(a)+"\"";
-    gi("udb_wikilinka").href = "http://seesaawiki.jp/marisuto/d/" + EscapeEUCJP(db[a].name) + "";
-    gi("udb_wikilinkb").href = "http://marisuto.wiki.fc2.com/wiki/" + EscapeUTF8(db[a].name) + "";
+    gi("udb_wikilinka").href = "http://seesaawiki.jp/marisuto/d/" + EscapeEUCJP(db[a].seesaaname) + "";
+    gi("udb_wikilinkb").href = "http://marisuto.wiki.fc2.com/wiki/" + EscapeUTF8(db[a].fc2name) + "";
 };
 me = gi("ut_body");
 z = "";
