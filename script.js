@@ -188,7 +188,7 @@ gen_tsdata = function (t, u) {
     }
 };
 gen_tsdata();
-search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob, n_units) {
+search = function (a, b, c, f, i, j, cf, st, sf, ef, kf, tf, tt, tg, r1f, r2f, ob, n_units) {
     if (need_updtd) {
         gen_tsdata()
     }
@@ -203,6 +203,7 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob, n
     r1f = [a("sb_r1_a"), a("sb_r1_b"), a("sb_r1_c")];
     r2f = [a("sb_r2_a"), a("sb_r2_b"), a("sb_r2_c")];
     ef = [a("sb_e_0"), a("sb_e_1"), a("sb_e_2"), a("sb_e_3"), a("sb_e_4"), a("sb_e_5")];
+    kf = [a("sb_k_n"), a("sb_k_s")];
     ob = getoptboxobj();
     tt = gi("sb_typegroup").getElementsByTagName("input");
     tg = [];
@@ -297,6 +298,10 @@ search = function (a, b, c, f, i, j, cf, st, sf, ef, tf, tt, tg, r1f, r2f, ob, n
             } else if (!ef[4] && c[12] === "闇") {
                 f = 1
             } else if (!ef[5] && c[12] === "無") {
+                f = 1
+            } else if (!kf[0] && c[14] !== "---") {
+                f = 1
+            } else if (!kf[1] && c[14] === "---") {
                 f = 1
             }
         }
