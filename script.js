@@ -372,7 +372,7 @@ gi("sb_cb").onclick = gi("sb_cb2").onclick = function () {
 };
 document.body.onkeydown = function (e) {
     e = e ? e : event;
-    if ((e.ctrlKey || e.metaKey) && event.keyCode === 70 && !g_sibfocus) {
+    if ((e.ctrlKey || e.metaKey) && e.keyCode === 70 && !g_sibfocus) {
         e.preventDefault();
         if (!boxopenf) {
             gi("sb_cb").onclick()
